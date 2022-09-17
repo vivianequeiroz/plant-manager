@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
 
 import homeImage from "../../assets/watering.png";
@@ -15,7 +16,7 @@ export default function Welcome() {
       <Text style={styles.title}>
         Easily {"\n"} manage your {"\n"} plants
       </Text>
-      <Image source={homeImage} />
+      <Image source={homeImage} style={styles.image} resizeMode="contain" />
       <Text style={styles.subtitle}>
         Don't forget to water your plants anymore. We take care to remember you
         whenever you need.
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
   },
   title: {
     fontSize: 32,
@@ -59,5 +60,8 @@ const styles = StyleSheet.create({
   buttonContent: {
     color: colors.white,
     fontSize: 24,
+  },
+  image: {
+    width: Dimensions.get("window").width * 0.7,
   },
 });
