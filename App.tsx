@@ -9,6 +9,7 @@ import {
 } from "@expo-google-fonts/jost";
 import AppLoading from "expo-app-loading";
 import UserIdentification from "./src/screens/UserIdentification";
+import Confirmation from "./src/screens/Confirmation";
 
 export default function App() {
   const [isFontsLoaded] = useFonts({
@@ -22,7 +23,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <UserIdentification />
+      <Confirmation />
       <StatusBar style="auto" />
     </View>
   );
