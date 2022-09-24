@@ -8,20 +8,22 @@ import Welcome from "../screens/Welcome";
 import UserIdentification from "../screens/UserIdentification";
 import Confirmation from "../screens/Confirmation";
 
-const Stack = createNativeStackNavigator();
+const StackRoutes = createNativeStackNavigator();
 
 const AppRoutes: React.FC = () => (
-  <NavigationContainer>
-    <Stack.Navigator
-      screenOptions={{
-        contentStyle: { backgroundColor: colors.white },
-      }}
-    >
-      <Stack.Screen name="Welcome" component={Welcome} />
-      <Stack.Screen name="UserIdentification" component={UserIdentification} />
-      <Stack.Screen name="Confirmation" component={Confirmation} />
-    </Stack.Navigator>
-  </NavigationContainer>
+  <StackRoutes.Navigator
+    screenOptions={{
+      contentStyle: { backgroundColor: colors.white },
+      headerShown: false,
+    }}
+  >
+    <StackRoutes.Screen name="Welcome" component={Welcome} />
+    <StackRoutes.Screen
+      name="UserIdentification"
+      component={UserIdentification}
+    />
+    <StackRoutes.Screen name="Confirmation" component={Confirmation} />
+  </StackRoutes.Navigator>
 );
 
 export default AppRoutes;
