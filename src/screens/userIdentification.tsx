@@ -1,4 +1,5 @@
 import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
   SafeAreaView,
@@ -18,6 +19,8 @@ export default function UserIdentification() {
   const [isFilled, setIsFilled] = useState(false);
   const [name, setName] = useState<string>();
 
+  const navigation = useNavigation<any>();
+
   function handleInputBlur() {
     setIsFocused(false);
     setIsFilled(!!name);
@@ -30,6 +33,10 @@ export default function UserIdentification() {
   function handleInputChange(value: string) {
     setIsFilled(!!value);
     setName(value);
+  }
+
+  function handleSubmit() {
+    navigation.navigate("Confirmation");
   }
 
   return (
@@ -55,7 +62,7 @@ export default function UserIdentification() {
               ]}
             ></TextInput>
             <View style={styles.footer}>
-              <Button />
+              <Button title="Confirm" onPress={handleSubmit} />
             </View>
           </View>
         </View>
