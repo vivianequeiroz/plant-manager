@@ -8,6 +8,7 @@ import {
   TextInput,
   StyleSheet,
 } from "react-native";
+import { Button } from "../components/Button";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
@@ -18,7 +19,13 @@ export default function UserIdentification() {
         <View style={styles.form}>
           <Text style={styles.emoji}>😀</Text>
           <Text style={styles.title}>How can we {"\n"} call you?</Text>
-          <TextInput style={styles.textInput}></TextInput>
+          <TextInput
+            placeholder="Enter a name"
+            style={styles.textInput}
+          ></TextInput>
+          <View style={styles.footer}>
+            <Button />
+          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -62,5 +69,10 @@ const styles = StyleSheet.create({
     marginTop: 50,
     padding: 10,
     textAlign: "center",
+  },
+  footer: {
+    width: "100%",
+    paddingHorizontal: 20,
+    marginTop: 40,
   },
 });

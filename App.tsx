@@ -1,14 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Welcome from "./src/screens/welcome";
+import Welcome from "./src/screens/Welcome";
 import {
   useFonts,
   Jost_400Regular,
   Jost_600SemiBold,
 } from "@expo-google-fonts/jost";
 import AppLoading from "expo-app-loading";
-import UserIdentification from "./src/screens/userIdentification";
+import UserIdentification from "./src/screens/UserIdentification";
 
 export default function App() {
   const [isFontsLoaded] = useFonts({

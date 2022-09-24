@@ -4,14 +4,10 @@ import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
-type props = {
-  text: string;
-};
-
-export function Button({ text }: props) {
+export function Button() {
   return (
     <TouchableOpacity style={styles.container}>
-      <Text style={styles.text}> {text} </Text>
+      <Text style={styles.text}> Confirmar </Text>
     </TouchableOpacity>
   );
 }
