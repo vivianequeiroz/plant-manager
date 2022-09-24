@@ -21,10 +21,10 @@ export default function Confirmation() {
         <Text style={styles.emoji}>😄</Text>
         <Text style={styles.title}>We're done!</Text>
         <Text style={styles.subtitle}>
-          Let's start to take care of your plants very carefully.
+          Let's take care of your plants very carefully.
         </Text>
         <View style={styles.footer}>
-          <Button />
+          <Button title="Start" />
         </View>
       </View>
     </SafeAreaView>
