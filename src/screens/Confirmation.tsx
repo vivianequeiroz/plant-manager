@@ -1,20 +1,16 @@
-import {
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  Image,
-  TouchableOpacity,
-  Dimensions,
-  View,
-} from "react-native";
-import { Feather } from "@expo/vector-icons";
-
-import homeImage from "../../assets/watering.png";
+import { StyleSheet, Text, SafeAreaView, View } from "react-native";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 import { Button } from "../components/Button";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Confirmation() {
+  const navigation = useNavigation<any>();
+
+  function handleStart() {
+    navigation.navigate("PlantSelect");
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
@@ -24,7 +20,7 @@ export default function Confirmation() {
           Let's take care of your plants very carefully.
         </Text>
         <View style={styles.footer}>
-          <Button title="Start" />
+          <Button title="Start" onPress={handleStart} />
         </View>
       </View>
     </SafeAreaView>

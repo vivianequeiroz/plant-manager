@@ -24,9 +24,7 @@ export default function Welcome() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.wrapper}>
-        <Text style={styles.title}>
-          Easily {"\n"} manage your {"\n"} plants
-        </Text>
+        <Text style={styles.title}>Easily manage {"\n"} your plants</Text>
         <Image source={homeImage} style={styles.image} resizeMode="contain" />
         <Text style={styles.subtitle}>
           Don't forget to water your plants anymore. We take care to remember
@@ -59,7 +57,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     color: colors.heading,
-    margin: 38,
+    margin: 42,
     fontFamily: fonts.heading,
     lineHeight: 34,
   },
