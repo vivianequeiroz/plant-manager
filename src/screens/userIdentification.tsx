@@ -1,5 +1,5 @@
 import { Feather } from "@expo/vector-icons";
-import React from "react";
+import React, { useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -14,6 +14,24 @@ import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
 export default function UserIdentification() {
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
+  const [name, setName] = useState<string>();
+
+  function handleInputBlur() {
+    setIsFocused(false);
+    setIsFilled(!!name);
+  }
+
+  function handleInputFocus() {
+    setIsFocused(true);
+  }
+
+  function handleInputChange(value: string) {
+    setIsFilled(!!value);
+    setName(value);
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
@@ -23,12 +41,18 @@ export default function UserIdentification() {
         <View style={styles.content}>
           <View style={styles.form}>
             <View style={styles.header}>
-              <Text style={styles.emoji}>😀</Text>
+              <Text style={styles.emoji}>{isFilled ? "😄" : "😀"}</Text>
               <Text style={styles.title}>How can we {"\n"} call you?</Text>
             </View>
             <TextInput
               placeholder="Enter a name"
-              style={styles.textInput}
+              onBlur={handleInputBlur}
+              onFocus={handleInputFocus}
+              onChangeText={handleInputChange}
+              style={[
+                styles.textInput,
+                (isFocused || isFilled) && { borderColor: colors.green },
+              ]}
             ></TextInput>
             <View style={styles.footer}>
               <Button />
