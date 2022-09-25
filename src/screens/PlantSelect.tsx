@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import { StyleSheet, View, Text, FlatList } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  ActivityIndicator,
+} from "react-native";
 import { EnvironmentChips } from "../components/EnvironmentChips";
 
 import { Header } from "../components/Headers";
@@ -148,6 +154,9 @@ export function PlantSelect() {
           onEndReached={({ distanceFromEnd }) => {
             handleFetchMore(distanceFromEnd);
           }}
+          ListFooterComponent={
+            loadingMore ? <ActivityIndicator color="colors.green" /> : <></>
+          }
         ></FlatList>
       </View>
     </View>
