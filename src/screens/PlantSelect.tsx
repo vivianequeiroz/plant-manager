@@ -32,7 +32,9 @@ export function PlantSelect() {
 
   useEffect(() => {
     async function fetchEnvironments() {
-      const { data } = await api.get("plants_environments");
+      const { data } = await api.get(
+        "plants_environments?sort=title&order=asc"
+      );
       try {
         setEnvironments([
           {
@@ -51,7 +53,7 @@ export function PlantSelect() {
 
   useEffect(() => {
     async function fetchPlants() {
-      const { data } = await api.get("plants");
+      const { data } = await api.get("plants?_sort=name&_order=asc");
       try {
         setPlants(data);
         console.log(data);
