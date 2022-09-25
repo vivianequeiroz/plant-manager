@@ -57,6 +57,28 @@ export function PlantSelect() {
     setFilteredPlants(filteredPlants);
   }
 
+  async function fetchPlants() {
+    const { data } = await api.get(
+      `plants?_sort=name&_order=asc&_page=${page}&_limit=8`
+    );
+    try {
+      if (!data) return setLoading(true);
+
+      if (page > 1) {
+        setPlants((oldValue) => [...oldValue, ...data]);
+        setFilteredPlants((oldValue) => [...oldValue, ...data]);
+      } else {
+        setPlants(data);
+        setFilteredPlants(data);
+      }
+
+      setLoading(false);
+      setLoadingMore(false);
+    } catch (error) {
+      console.warn(error);
+    }
+  }
+
   useEffect(() => {
     async function fetchEnvironments() {
       const { data } = await api.get(
@@ -79,28 +101,6 @@ export function PlantSelect() {
   }, []);
 
   useEffect(() => {
-    async function fetchPlants() {
-      const { data } = await api.get(
-        `plants?_sort=name&_order=asc&_page=${page}&_limit=8`
-      );
-      try {
-        if (!data) return setLoading(true);
-
-        if (page > 1) {
-          setPlants((oldValue) => [...oldValue, ...data]);
-          setFilteredPlants((oldValue) => [...oldValue, ...data]);
-        } else {
-          setPlants(data);
-          setFilteredPlants(data);
-        }
-
-        setLoading(false);
-        setLoadingMore(false);
-      } catch (error) {
-        console.warn(error);
-      }
-    }
-
     fetchPlants();
   }, []);
 
