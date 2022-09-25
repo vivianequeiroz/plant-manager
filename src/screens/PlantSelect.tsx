@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, FlatList } from "react-native";
 import { EnvironmentChips } from "../components/EnvironmentChips";
 
 import { Header } from "../components/Headers";
@@ -12,12 +12,19 @@ export function PlantSelect() {
     <View style={styles.container}>
       <View style={styles.header}>
         <Header />
-
         <Text style={styles.title}>In which environment</Text>
         <Text style={styles.subtitle}>do you want to place your plant?</Text>
       </View>
 
-      <EnvironmentChips title={"cozinha"} active />
+      <View>
+        <FlatList
+          data={[1, 2, 3, 4, 5]}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.environmentList}
+          renderItem={() => <EnvironmentChips title={"cozinha"} active />}
+        ></FlatList>
+      </View>
     </View>
   );
 }
@@ -42,5 +49,12 @@ const styles = StyleSheet.create({
     color: colors.heading,
     fontFamily: fonts.text,
     lineHeight: 20,
+  },
+  environmentList: {
+    height: 40,
+    justifyContent: "center",
+    paddingBottom: 5,
+    marginLeft: 30,
+    marginVertical: 32,
   },
 });
