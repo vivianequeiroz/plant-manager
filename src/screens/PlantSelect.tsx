@@ -5,6 +5,7 @@ import { EnvironmentChips } from "../components/EnvironmentChips";
 
 import { Header } from "../components/Headers";
 import { PlantCardPrimary } from "../components/PlantCardPrimary";
+import { Loader } from "../components/Loader";
 import api from "../services/api";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
@@ -31,6 +32,7 @@ export function PlantSelect() {
   const [plants, setPlants] = useState<PlantProps[]>([]);
   const [selectedEnvironment, setSelectedEnvironment] = useState("all");
   const [filteredPlants, setFilteredPlants] = useState<PlantProps[]>([]);
+  const [loading, setLoading] = useState(true);
 
   function handleEnrivonmentSelected(environment: string) {
     setSelectedEnvironment(environment);
@@ -77,6 +79,7 @@ export function PlantSelect() {
       const { data } = await api.get("plants?_sort=name&_order=asc");
       try {
         setPlants(data);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -84,6 +87,8 @@ export function PlantSelect() {
 
     fetchPlants();
   }, []);
+
+  if (loading) return <Loader />;
 
   return (
     <View style={styles.container}>
