@@ -28,12 +28,13 @@ export function EnvironmentChips({
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.shape,
-    width: 76,
+    width: 80,
     height: 40,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 12,
     marginRight: 10,
+    padding: 4,
   },
   containerActive: {
     backgroundColor: colors.green_light,

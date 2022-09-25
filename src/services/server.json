@@ -75,8 +75,8 @@
     {
       "id": 6,
       "name": "Yucca",
-      "about": "São indicadas pois são fáceis de manter e cuidar. Você colocar em pequenos vasos, ou até mesmo em xícaras.",
-      "water_tips": "Graças à reserva de água dessas verdinhas, é sempre melhor regar pouco. Regue 1 vez na semana.",
+      "about": "They are indicated because they are easy to maintain and care for. You put it in small vases, or even in cups.",
+      "water_tips": "Thanks to the water reserve of these greens, it is always better to water little. Water once a week.",
       "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/6.svg",
       "environments": ["kitchen", "bedroom"],
       "frequency": {
@@ -86,7 +86,7 @@
     },
     {
       "id": 7,
-      "name": "Frutíferas",
+      "name": "Fruitful",
       "about": "They require a few hours of sunlight a day, so keep them near windows.",
       "water_tips": "Always water the soil and not the leaves. Water 3 times a week",
       "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/7.svg",
