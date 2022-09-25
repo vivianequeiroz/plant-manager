@@ -32,6 +32,11 @@ export function PlantSelect() {
   const [plants, setPlants] = useState<PlantProps[]>([]);
   const [selectedEnvironment, setSelectedEnvironment] = useState("all");
   const [filteredPlants, setFilteredPlants] = useState<PlantProps[]>([]);
+
+  const [page, setPage] = useState(1);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [loadedAll, setLoadedAll] = useState(false);
+
   const [loading, setLoading] = useState(true);
 
   function handleEnrivonmentSelected(environment: string) {
@@ -46,7 +51,6 @@ export function PlantSelect() {
     plants.filter((plant) => {
       if (plant.environments.includes(environment)) {
         filteredPlants.push(plant);
-        console.log(plant);
       }
     });
 
@@ -67,7 +71,7 @@ export function PlantSelect() {
           ...data,
         ]);
       } catch (error) {
-        console.log(error);
+        console.warn(error);
       }
     }
 
@@ -76,12 +80,24 @@ export function PlantSelect() {
 
   useEffect(() => {
     async function fetchPlants() {
-      const { data } = await api.get("plants?_sort=name&_order=asc");
+      const { data } = await api.get(
+        `plants?_sort=name&_order=asc&_page=${page}&_limit=8`
+      );
       try {
-        setPlants(data);
+        if (!data) return setLoading(true);
+
+        if (page > 1) {
+          setPlants((oldValue) => [...oldValue, ...data]);
+          setFilteredPlants((oldValue) => [...oldValue, ...data]);
+        } else {
+          setPlants(data);
+          setFilteredPlants(data);
+        }
+
         setLoading(false);
+        setLoadingMore(false);
       } catch (error) {
-        console.log(error);
+        console.warn(error);
       }
     }
 
