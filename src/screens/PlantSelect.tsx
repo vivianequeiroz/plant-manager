@@ -79,6 +79,14 @@ export function PlantSelect() {
     }
   }
 
+  function handleFetchMore(distance: number) {
+    if (distance < 1) return;
+
+    setLoadingMore(true);
+    setPage((oldValue) => oldValue + 1);
+    fetchPlants();
+  }
+
   useEffect(() => {
     async function fetchEnvironments() {
       const { data } = await api.get(
@@ -136,6 +144,10 @@ export function PlantSelect() {
           renderItem={({ item }) => <PlantCardPrimary data={item} />}
           numColumns={2}
           showsVerticalScrollIndicator={false}
+          onEndReachedThreshold={0.1}
+          onEndReached={({ distanceFromEnd }) => {
+            handleFetchMore(distanceFromEnd);
+          }}
         ></FlatList>
       </View>
     </View>
