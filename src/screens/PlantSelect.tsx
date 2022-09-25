@@ -29,11 +29,18 @@ interface PlantProps {
 export function PlantSelect() {
   const [envinronments, setEnvironments] = useState<EnvironmentProps[]>([]);
   const [plants, setPlants] = useState<PlantProps[]>([]);
+  const [selectedEnvironment, setSelectedEnvironment] = useState("all");
+
+  function handleEnrivonmentSelected(environment: string) {
+    console.log(environment);
+
+    setSelectedEnvironment(environment);
+  }
 
   useEffect(() => {
     async function fetchEnvironments() {
       const { data } = await api.get(
-        "plants_environments?sort=title&order=asc"
+        "plants_environments?_sort=title&order=asc"
       );
       try {
         setEnvironments([
@@ -79,7 +86,13 @@ export function PlantSelect() {
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.environmentList}
-          renderItem={({ item }) => <EnvironmentChips title={item.title} />}
+          renderItem={({ item }) => (
+            <EnvironmentChips
+              title={item.title}
+              active={item.key === selectedEnvironment}
+              onPress={() => handleEnrivonmentSelected(item.key)}
+            />
+          )}
         ></FlatList>
       </View>
 
@@ -120,8 +133,9 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: "center",
     paddingBottom: 5,
-    marginLeft: 30,
+    marginHorizontal: 30,
     marginVertical: 32,
+    paddingRight: 40,
   },
   plants: {
     flex: 1,

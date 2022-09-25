@@ -1,6 +1,10 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
-import { RectButton, RectButtonProps } from "react-native-gesture-handler";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import {
+  GestureHandlerRootView,
+  RectButton,
+  RectButtonProps,
+} from "react-native-gesture-handler";
 
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
@@ -16,12 +20,14 @@ export function EnvironmentChips({
   ...rest
 }: EnvironmentChipsProps) {
   return (
-    <RectButton
-      style={[styles.container, active && styles.containerActive]}
-      {...rest}
-    >
-      <Text style={[styles.text, active && styles.textActive]}>{title}</Text>
-    </RectButton>
+    <GestureHandlerRootView>
+      <RectButton
+        style={[styles.container, active && styles.containerActive]}
+        {...rest}
+      >
+        <Text style={[styles.text, active && styles.textActive]}>{title}</Text>
+      </RectButton>
+    </GestureHandlerRootView>
   );
 }
 
@@ -34,7 +40,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 12,
     marginHorizontal: 5,
-    padding: 4,
   },
   containerActive: {
     backgroundColor: colors.green_light,
