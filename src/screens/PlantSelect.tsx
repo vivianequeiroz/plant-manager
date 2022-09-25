@@ -1,6 +1,7 @@
 import React from "react";
 
 import { StyleSheet, View, Text } from "react-native";
+import { EnvironmentChips } from "../components/EnvironmentChips";
 
 import { Header } from "../components/Headers";
 import colors from "../styles/colors";
@@ -15,6 +16,8 @@ export function PlantSelect() {
         <Text style={styles.title}>In which environment</Text>
         <Text style={styles.subtitle}>do you want to place your plant?</Text>
       </View>
+
+      <EnvironmentChips title={"cozinha"} active />
     </View>
   );
 }
