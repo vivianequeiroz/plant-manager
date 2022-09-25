@@ -33,13 +33,17 @@ export function PlantSelect() {
   useEffect(() => {
     async function fetchEnvironments() {
       const { data } = await api.get("plants_environments");
-      setEnvironments([
-        {
-          key: "all",
-          title: "All",
-        },
-        ...data,
-      ]);
+      try {
+        setEnvironments([
+          {
+            key: "all",
+            title: "All",
+          },
+          ...data,
+        ]);
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     fetchEnvironments();
@@ -48,7 +52,12 @@ export function PlantSelect() {
   useEffect(() => {
     async function fetchPlants() {
       const { data } = await api.get("plants");
-      setPlants(data);
+      try {
+        setPlants(data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     fetchPlants();
@@ -75,10 +84,9 @@ export function PlantSelect() {
       <View style={styles.plants}>
         <FlatList
           data={plants}
+          renderItem={({ item }) => <PlantCardPrimary data={item} />}
           numColumns={2}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.plantsList}
-          renderItem={({ item }) => <PlantCardPrimary data={item} />}
         ></FlatList>
       </View>
     </View>

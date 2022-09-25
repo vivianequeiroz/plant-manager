@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { RectButton, RectButtonProps } from "react-native-gesture-handler";
+import { SvgFromUri } from "react-native-svg";
 
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
@@ -15,6 +16,7 @@ interface PlantProps extends RectButtonProps {
 export function PlantCardPrimary({ data, ...rest }: PlantProps) {
   return (
     <RectButton style={styles.container} {...rest}>
+      <SvgFromUri width={90} height={90} uri={data.photo} />
       <Text style={styles.text}>{data.name}</Text>
     </RectButton>
   );
