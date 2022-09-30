@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     jystifyContent: "space-between",
     alignItems: "center",
     backgroundColor: colors.blue_light,
-    padding: 20,
+    padding: 16,
     borderRadius: 20,
     position: "relative",
     bottom: 70,
@@ -106,7 +106,8 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 20,
     fontFamily: fonts.text,
-    fontSize: 16,
+    fontSize: 14,
+    lineHeight: 16,
     textAlign: "justify",
   },
   alertLabel: {
