@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { StyleSheet, View, Text, Image } from "react-native";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import profileImg from "../../assets/pyon.png";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function Header() {
+  const [userName, setUserName] = useState<string>();
+  useEffect(() => {
+    async function recoverUsernameFromPhoneStorage() {
+      const user = await AsyncStorage.getItem("@plantmanager:user");
+      setUserName(user || "");
+    }
+  }, [userName]);
   return (
     <View style={styles.container}>
       <View>
