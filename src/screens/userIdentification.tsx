@@ -11,10 +11,12 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
 } from "react-native";
 import { Button } from "../components/Button";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function UserIdentification() {
   const [isFocused, setIsFocused] = useState(false);
@@ -37,7 +39,12 @@ export default function UserIdentification() {
     setName(value);
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
+    if (!name) {
+      return Alert.alert("Please, enter your name.");
+    }
+
+    await AsyncStorage.setItem("@plantmanager:user", name);
     navigation.navigate("Confirmation");
   }
 
