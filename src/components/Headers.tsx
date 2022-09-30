@@ -9,17 +9,21 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function Header() {
   const [userName, setUserName] = useState<string>();
+
   useEffect(() => {
     async function recoverUsernameFromPhoneStorage() {
       const user = await AsyncStorage.getItem("@plantmanager:user");
       setUserName(user || "");
     }
+
+    recoverUsernameFromPhoneStorage();
   }, [userName]);
+
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.greeting}>Hello,</Text>
-        <Text style={styles.userName}>Pyon</Text>
+        <Text style={styles.userName}>{userName}</Text>
       </View>
       <Image source={profileImg} style={styles.image} />
     </View>
