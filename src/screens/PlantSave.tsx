@@ -21,7 +21,7 @@ import { Button } from "../components/Button";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 import { format, isBefore } from "date-fns";
-import { PlantProps } from "../libs/storage";
+import { PlantProps, savePlant } from "../libs/storage";
 
 interface PlantParams {
   plant: PlantProps;
@@ -30,6 +30,7 @@ interface PlantParams {
 export function PlantSave() {
   const [selectedDateTime, setSelectedDateTime] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(Platform.OS === "ios");
+
   const route = useRoute();
   const { plant } = route.params as PlantParams;
 
@@ -47,7 +48,7 @@ export function PlantSave() {
 
     if (dateTime && isBefore(dateTime, new Date())) {
       setSelectedDateTime(new Date());
-      return Alert.alert("Choose a time in the future! ⏰");
+      return Alert.alert("Validation error", "Choose a time in the future! ⏰");
     }
 
     if (dateTime) {
@@ -57,6 +58,17 @@ export function PlantSave() {
 
   function handleOpenDatetimePickerOnAndroid() {
     invertOldState();
+  }
+
+  async function handleSave() {
+    try {
+      await savePlant({
+        ...plant,
+        dateTimeNotification: selectedDateTime,
+      });
+    } catch (e) {
+      Alert.alert("There was an error while saving your plant. 😢");
+    }
   }
 
   return (
@@ -98,7 +110,7 @@ export function PlantSave() {
             </TouchableOpacity>
           )}
 
-          <Button title="Register plant" onPress={() => {}} />
+          <Button title="Register plant" onPress={handleSave} />
         </View>
       </View>
     </>
@@ -146,7 +158,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 20,
     position: "relative",
-    bottom: 70,
+    bottom: 50,
   },
   tipImage: {
     width: 56,
@@ -169,7 +181,7 @@ const styles = StyleSheet.create({
   dateTimePickerButton: {
     width: "100%",
     alignItems: "center",
-    paddingVertical: 40,
+    paddingVertical: 10,
   },
   dateTimePickerText: {
     color: colors.heading,
