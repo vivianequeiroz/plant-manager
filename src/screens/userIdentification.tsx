@@ -41,11 +41,15 @@ export default function UserIdentification() {
 
   async function handleSubmit() {
     if (!name) {
-      return Alert.alert("Please, enter your name.");
+      return Alert.alert("Validation error", "Please, enter your name.");
     }
 
-    await AsyncStorage.setItem("@plantmanager:user", name);
-    navigation.navigate("Confirmation");
+    try {
+      await AsyncStorage.setItem("@plantmanager:user", name);
+      navigation.navigate("Confirmation");
+    } catch {
+      Alert.alert("There was an error while saving your name. 😢");
+    }
   }
 
   return (
