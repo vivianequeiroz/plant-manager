@@ -17,6 +17,7 @@ import { Button } from "../components/Button";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Confirmation } from "../models/Confirmation";
 
 export default function UserIdentification() {
   const [isFocused, setIsFocused] = useState(false);
@@ -24,6 +25,14 @@ export default function UserIdentification() {
   const [name, setName] = useState<string>();
 
   const navigation = useNavigation<any>();
+
+  const userConfirmationScreenData: Confirmation = {
+    title: "We are done!",
+    subtitle: "Let's take care of your plants very carefully.",
+    buttonTitle: "Start",
+    icon: "smile",
+    nextScreen: "PlantSelect",
+  };
 
   function handleInputBlur() {
     setIsFocused(false);
@@ -46,9 +55,12 @@ export default function UserIdentification() {
 
     try {
       await AsyncStorage.setItem("@plantmanager:user", name);
-      navigation.navigate("Confirmation");
+      navigation.navigate("Confirmation", userConfirmationScreenData);
     } catch {
-      Alert.alert("There was an error while saving your name. 😢");
+      Alert.alert(
+        "Error",
+        "There was an error while saving your name. 😢 \n Please try again."
+      );
     }
   }
 
