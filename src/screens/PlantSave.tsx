@@ -21,8 +21,10 @@ import { Button } from "../components/Button";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 import { format, isBefore } from "date-fns";
-import { loadPlant, savePlant } from "../libs/storage";
+import { savePlant } from "../libs/storage";
 import { IPlantParams } from "../models/IPlant";
+import { useNavigation } from "@react-navigation/native";
+import { IConfirmation } from "../models/IConfirmation";
 
 export function PlantSave() {
   const [selectedDateTime, setSelectedDateTime] = useState(new Date());
@@ -30,6 +32,16 @@ export function PlantSave() {
 
   const route = useRoute();
   const { plant } = route.params as IPlantParams;
+
+  const navigation = useNavigation<any>();
+
+  const plantSavedScreenData: IConfirmation = {
+    title: "Great!",
+    subtitle: "Now we will always remember you to take care of your plants.",
+    buttonTitle: "Thanks :D",
+    icon: "hug",
+    nextScreen: "MyPlants",
+  };
 
   function invertOldState() {
     setShowDatePicker((oldState) => !oldState);
@@ -63,6 +75,8 @@ export function PlantSave() {
         ...plant,
         dateTimeNotification: selectedDateTime,
       });
+
+      navigation.navigate("Confirmation", plantSavedScreenData);
     } catch (e) {
       Alert.alert("There was an error while saving your plant. 😢");
     }

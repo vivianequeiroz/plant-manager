@@ -27,7 +27,7 @@ export default function Confirmation() {
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.subtitle}>{subtitle}</Text>
         <View style={styles.footer}>
-          <Button title="Start" onPress={handleStart} />
+          <Button title={buttonTitle} onPress={handleStart} />
         </View>
       </View>
     </SafeAreaView>
