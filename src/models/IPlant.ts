@@ -1,4 +1,4 @@
-export interface PlantProps {
+export interface IPlantProps {
   id: number;
   name: string;
   about: string;
@@ -12,12 +12,12 @@ export interface PlantProps {
   dateTimeNotification: Date;
 }
 
-export interface StoragePlantsProps {
+export interface IStoragePlantsProps {
   [id: string]: {
-    data: PlantProps;
+    data: IPlantProps;
   };
 }
 
-export interface PlantParams {
-  plant: PlantProps;
+export interface IPlantParams {
+  plant: IPlantProps;
 }

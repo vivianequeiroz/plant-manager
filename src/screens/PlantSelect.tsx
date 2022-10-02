@@ -16,7 +16,7 @@ import api from "../services/api";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 import { useNavigation } from "@react-navigation/native";
-import { PlantProps } from "../libs/storage";
+import { IPlantProps } from "../models/IPlant";
 
 interface EnvironmentProps {
   key: string;
@@ -25,9 +25,9 @@ interface EnvironmentProps {
 
 export function PlantSelect() {
   const [envinronments, setEnvironments] = useState<EnvironmentProps[]>([]);
-  const [plants, setPlants] = useState<PlantProps[]>([]);
+  const [plants, setPlants] = useState<IPlantProps[]>([]);
   const [selectedEnvironment, setSelectedEnvironment] = useState("all");
-  const [filteredPlants, setFilteredPlants] = useState<PlantProps[]>([]);
+  const [filteredPlants, setFilteredPlants] = useState<IPlantProps[]>([]);
 
   const [page, setPage] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -43,7 +43,7 @@ export function PlantSelect() {
       return setFilteredPlants(plants);
     }
 
-    let filteredPlants: PlantProps[] = [];
+    let filteredPlants: IPlantProps[] = [];
 
     plants.filter((plant) => {
       if (plant.environments.includes(environment)) {
@@ -84,7 +84,7 @@ export function PlantSelect() {
     fetchPlants();
   }
 
-  function handlePlantSelect(plant: PlantProps) {
+  function handlePlantSelect(plant: IPlantProps) {
     navigation.navigate("PlantSave", { plant });
   }
 

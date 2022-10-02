@@ -1,11 +1,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { format } from "date-fns";
-import { PlantProps, StoragePlantsProps } from "../models/Plant";
+import { IPlantProps, IStoragePlantsProps } from "../models/IPlant";
 
-export async function savePlant(plant: PlantProps): Promise<void> {
+export async function savePlant(plant: IPlantProps): Promise<void> {
   try {
     const data = await AsyncStorage.getItem("@plantmanager:plants");
-    const oldPlants = data ? (JSON.parse(data) as StoragePlantsProps) : {};
+    const oldPlants = data ? (JSON.parse(data) as IStoragePlantsProps) : {};
     const newPlant = {
       [plant.id]: {
         data: plant,
@@ -24,10 +24,10 @@ export async function savePlant(plant: PlantProps): Promise<void> {
     throw new Error(error);
   }
 }
-export async function loadPlant(): Promise<PlantProps[]> {
+export async function loadPlant(): Promise<IPlantProps[]> {
   try {
     const data = await AsyncStorage.getItem("@plantmanager:plants");
-    const plants = data ? (JSON.parse(data) as StoragePlantsProps) : {};
+    const plants = data ? (JSON.parse(data) as IStoragePlantsProps) : {};
 
     const plantsSorted = Object.keys(plants)
       .map((plant) => {

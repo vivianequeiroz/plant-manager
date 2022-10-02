@@ -3,7 +3,7 @@ import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 import { Button } from "../components/Button";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { Confirmation } from "../models/Confirmation";
+import { IConfirmation } from "../models/IConfirmation";
 
 const emojis = {
   hug: "🤗",
@@ -14,7 +14,7 @@ export default function Confirmation() {
   const navigation = useNavigation<any>();
   const routes = useRoute();
   const { title, subtitle, buttonTitle, icon, nextScreen } =
-    routes.params as Confirmation;
+    routes.params as IConfirmation;
 
   function handleStart() {
     navigation.navigate(nextScreen);

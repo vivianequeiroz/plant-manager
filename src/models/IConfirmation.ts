@@ -1,4 +1,4 @@
-export interface Confirmation {
+export interface IConfirmation {
   title: string;
   subtitle: string;
   buttonTitle: string;

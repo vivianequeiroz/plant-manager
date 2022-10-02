@@ -21,21 +21,18 @@ import { Button } from "../components/Button";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 import { format, isBefore } from "date-fns";
-import { loadPlant, PlantProps, savePlant } from "../libs/storage";
-
-interface PlantParams {
-  plant: PlantProps;
-}
+import { loadPlant, savePlant } from "../libs/storage";
+import { IPlantParams } from "../models/IPlant";
 
 export function PlantSave() {
   const [selectedDateTime, setSelectedDateTime] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(Platform.OS === "ios");
 
   const route = useRoute();
-  const { plant } = route.params as PlantParams;
+  const { plant } = route.params as IPlantParams;
 
-  async function invertOldState() {
-    await setShowDatePicker((oldState) => !oldState);
+  function invertOldState() {
+    setShowDatePicker((oldState) => !oldState);
   }
 
   function handleChangeTime(
@@ -61,8 +58,6 @@ export function PlantSave() {
   }
 
   async function handleSave() {
-    const data = await loadPlant();
-    console.log(data);
     try {
       await savePlant({
         ...plant,

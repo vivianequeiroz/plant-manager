@@ -17,7 +17,7 @@ import { Button } from "../components/Button";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Confirmation } from "../models/Confirmation";
+import { IConfirmation } from "../models/IConfirmation";
 
 export default function UserIdentification() {
   const [isFocused, setIsFocused] = useState(false);
@@ -26,7 +26,7 @@ export default function UserIdentification() {
 
   const navigation = useNavigation<any>();
 
-  const userConfirmationScreenData: Confirmation = {
+  const userConfirmationScreenData: IConfirmation = {
     title: "We are done!",
     subtitle: "Let's take care of your plants very carefully.",
     buttonTitle: "Start",
